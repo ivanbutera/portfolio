@@ -26,7 +26,7 @@ The time series was split into an **80% Training Set** and a **20% Testing Set**
 | Step | Process | Result | Conclusion |
 | :--- | :--- | :--- | :--- |
 | **Stationarity ($\mathbf{d}$)** | Augmented Dickey-Fuller (ADF) Test & Differencing. | $\mathbf{d=1}$ (First-order difference required). | Achieved stationarity. |
-| **Model Order ($\mathbf{p}, \mathbf{q}$)** | ACF and PACF Plots (or Auto-ARIMA). | $\mathbf{ARIMA(3, 1, 3)}$ was selected. | Model was highly significant (all $p$-values $\le 0.05$). |
+| **Model Order ($\mathbf{p}, \mathbf{q}$)** | ACF and PACF Plots (or Auto-ARIMA). | $\mathbf{ARIMA(2, 1, 2)}$ was selected. | Model was highly significant (all $p$-values $\le 0.05$). |
 | **Diagnostics** | Ljung-Box & Heteroskedasticity Tests. | Ljung-Box passed, but **Heteroskedasticity failed** (P-value $0.00$). | Indicates high, time-varying volatility, suggesting the need for a **GARCH** model. |
 | **Prediction** | Out-of-Sample Forecast. | **Flat-line forecast.** | **Failed.** The linear model's memory expired quickly, reverting to the long-term mean due to the data's Random Walk nature. |
 
@@ -58,3 +58,4 @@ The final forecast was generated using a **recurrent (or rolling)** method:
 3.  This new 60-day sequence is fed back into the model to predict Day $T+2$.
 
 This ensures the final forecast maintains the current trend captured by the LSTM's successful memory structure.
+
